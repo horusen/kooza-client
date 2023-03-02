@@ -1,0 +1,27 @@
+<!-- Modal -->
+<div [class]="'modal animated bounceInDown right clearfix'"
+     [id]="configuration.name"
+     tabindex="-1"
+     role="dialog"
+     [attr.aria-labelledby]="configuration.name + '-label'"
+     aria-hidden="true">
+  <div class="modal-dialog"
+       role="document">
+    <div class="modal-content scroll-9">
+      <!-- <div class="modal-header p-2">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closed.emit()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h6 class="modal-title" id="myModalLabel">
+          <i [class]="'fad fa-' + configuration.icone" *ngIf="configuration.icone"></i>
+          {{ configuration.titre | translate }}
+        </h6>
+      </div> -->
+
+      <div class="modal-body p-0">
+        <ng-content></ng-content>
+      </div>
+
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
