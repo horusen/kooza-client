@@ -1,3 +1,4 @@
+import { AppInjector } from './../services/app-injector.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from '../services/base.service';
@@ -16,17 +17,19 @@ export class BaseContainerComponent<T>
   edit = false;
   filter = false;
 
+  public router: Router;
+
   // A specifier à chaque fois que un component herite de  celui ci
   // Represent l'element sur lequel est s'appuie ce component: ex ministre, service, ministere
   // element!: string;
 
   constructor(
     public override service: BaseService<T>,
-    public router: Router,
     public route: ActivatedRoute,
     @Inject('string') public element: string
   ) {
     super(service);
+    this.router = AppInjector.injector.get(Router);
   }
 
   ngOnInit(): void {}
@@ -37,7 +40,7 @@ export class BaseContainerComponent<T>
         this.create = true;
         this.helper.modal.toggle(`${this.element}-create-modal`);
       } else if (fragment === `edit-${this.element}`) {
-        if (this.service.item) {
+        if (this.service.singleData) {
           this.edit = true;
           this.helper.modal.toggle(`${this.element}-edit-modal`);
         } else {

@@ -1,13 +1,15 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { RetailersComponent } from './retailers/retailers.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
 import { LeftmenuComponent } from './leftmenu/leftmenu.component';
+import { RetailersComponent } from './retailers/retailers.component';
+import { AppInjector } from './shared/services';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,14 @@ import { LeftmenuComponent } from './leftmenu/leftmenu.component';
     HeaderComponent,
     FooterComponent,
     RetailersComponent,
-    LeftmenuComponent
+    LeftmenuComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(injector: Injector) {
+    AppInjector.injector = injector;
+  }
+}

@@ -254,12 +254,13 @@ export class BaseCreateComponent<T>
     this.helper.notification.toastDanger('Formulaire');
   }
 
-  async create() {
+  create() {
     this.loading = true;
-    await this.service.create(this.form.value);
-    this.loading = false;
-    this.form.reset();
-    this.helper.navigation.deleteFragmentFromUrl();
-    this.helper.notification.alertSuccess();
+    this.service.store(this.form.value).subscribe(() => {
+      this.loading = false;
+      this.form.reset();
+      this.helper.navigation.deleteFragmentFromUrl();
+      this.helper.notification.alertSuccess();
+    });
   }
 }
