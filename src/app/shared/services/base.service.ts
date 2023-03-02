@@ -1,100 +1,264 @@
-import { AngularFireStorageReference } from './../../../../node_modules/@angular/fire/compat/storage/ref.d';
-import { DocumentData } from './../../../../node_modules/@firebase/firestore-types/index.d';
-import { Firestore } from './../../../../node_modules/@angular/fire/firestore/firestore.d';
-
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/compat/firestore';
-import { tap, map, finalize } from 'rxjs/operators';
-import { from, ReplaySubject } from 'rxjs';
+import { Factory } from './../../helpers/factory/factory';
+import { map, tap } from 'rxjs/operators';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Params } from '@angular/router';
 import { Inject, Injectable } from '@angular/core';
+import { ApiResponse } from '../models/ApiResponse';
+import { PaginationInfo } from '../interfaces/pagination-info.interface';
+import { Helper } from '../../helpers/helper/helper';
 import { AppInjector } from './app-injector.service';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root',
 })
-export abstract class BaseService<T extends DocumentData> {
-  private _data: T[] = [];
+export abstract class BaseService<T = any> {
+  protected _data: T[] = [];
+  protected _singleData: T | undefined;
+  protected _paginationInfo: PaginationInfo | undefined;
 
-  private _item: T | null = null;
+  protected factory: Factory;
+  protected helper: Helper;
 
+  public singleData$ = new ReplaySubject<T | undefined | null>(1);
   public data$ = new ReplaySubject<T[]>(1);
-  public item$ = new ReplaySubject<T | null>(1);
+  public paginationInfo$ = new ReplaySubject<PaginationInfo>();
 
-  private collection: AngularFirestoreCollection;
-  private firestore: AngularFirestore;
-  private collectionName: string;
-  public storage: AngularFireStorage;
+  public lastItemcreated$ = new Subject<T>();
+  public lastItemEdited$ = new Subject<T>();
+  public lastItemDeleted$ = new Subject<T>();
 
-  public get data(): T[] {
-    return this._data;
-  }
-
-  public get item(): T | null {
-    return this._item;
-  }
-
-  public set item(item: T | null) {
-    this._item = item;
-    this.item$.next(item);
-  }
-
-  public set data(data: T[]) {
+  set data(data: T[]) {
     this._data = data;
     this.data$.next(this._data);
   }
 
-  constructor(@Inject('collectionName') collectionName: string) {
-    this.collectionName = collectionName;
-    this.firestore = AppInjector.injector.get(AngularFirestore);
-    this.storage = AppInjector.injector.get(AngularFireStorage);
-    this.collection = this.firestore.collection(this.collectionName);
+  set singleData(singleData: T | undefined) {
+    // if (singleData) {
+    this._singleData = singleData;
+    this.singleData$.next(this._singleData);
+    // }
   }
 
-  getAll() {
-    return this.collection.valueChanges().pipe(
-      tap((items) => {
-        this.data = items as T[];
+  set paginationInfo(paginationInfo: PaginationInfo) {
+    this._paginationInfo = paginationInfo;
+    this.paginationInfo$.next(this._paginationInfo);
+  }
+
+  set lastItemCreated(item: any) {
+    this.lastItemcreated$.next(item);
+  }
+
+  set lastItemDeleted(item: any) {
+    this.lastItemDeleted$.next(item);
+  }
+
+  get data() {
+    return this._data;
+  }
+
+  get singleData() {
+    return this._singleData;
+  }
+
+  constructor(@Inject('string') public endPoint: string) {
+    this.factory = AppInjector.injector.get(Factory);
+    this.helper = AppInjector.injector.get(Helper);
+  }
+
+  initialise(emitData: boolean = true, params?: Params) {
+    return this.factory
+      .get(`${this.endPoint}/initialise`, { params })
+      .pipe(
+        tap(
+          emitData
+            ? this.listResponseHandler()
+            : this.onlyErrorResponseHandler()
+        )
+      );
+  }
+
+  all(emit = true, params?: Params): Observable<any> {
+    return this.factory
+      .get(`${this.endPoint}/all`, { params })
+      .pipe(
+        tap(emit ? this.listResponseHandler() : this.onlyErrorResponseHandler())
+      );
+  }
+
+  search(word: string, fields: string[]) {
+    return this.factory
+      .post(`${this.endPoint}/search`, { word, fields })
+      .pipe(tap(this.listResponseHandler()));
+  }
+
+  get(options: { emitData: boolean; params?: Params } = { emitData: true }) {
+    return this.factory
+      .get(`${this.endPoint}`, { params: options?.params })
+      .pipe(
+        tap((response: ApiResponse<T>) => {
+          if (options.emitData) {
+            this.data = response.data;
+          }
+
+          this.paginationInfo = {
+            total: response.total,
+            itemsPerPage: response.per_page,
+            currentPage: response.current_page,
+          };
+        }),
+        map((response: ApiResponse<T>) => response.data)
+      );
+  }
+
+  checkIfItemInData(item: any, libelleID = 'id') {
+    return this.data
+      .map((i) => i[libelleID as keyof T])
+      .includes(item[libelleID]);
+  }
+
+  latest() {
+    return this.factory.get(`${this.endPoint}/latest`);
+  }
+
+  download(fileID: number) {
+    return this.factory.get(`file/${fileID}/download`);
+  }
+
+  store(elements: object) {
+    return this.factory.post(this.endPoint, elements).pipe(
+      tap({
+        next: (response) => {
+          this.lastItemCreated = response;
+          this.unshiftItemInData(response);
+        },
+        error: (error) => {
+          this.errorResponseHandler(error);
+        },
       })
     );
   }
 
-  async create(element: T) {
-    const filePath = `${this.collectionName}/${new Date().getTime()}_${
-      element['name']
-    }`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, element['image']);
-
-    // observe percentage changes
-    // get notified when the download URL is available
-    await task.snapshotChanges().toPromise();
-    let url = await fileRef.getDownloadURL().toPromise();
-    return this.collection.add(
-      Object.assign(element, { image: url, id: Date.now() })
+  show(id: string, emitData = true) {
+    return this.factory.get(`${this.endPoint}/${id}`).pipe(
+      tap({
+        next: (single) => {
+          if (emitData) this.singleData = single;
+        },
+        error: (error) => this.errorResponseHandler(error),
+      })
     );
   }
 
-  getSingle(id: string) {
-    return this.firestore
-      .doc(`this.collectionName/${id}`)
-      .get()
-      .pipe(
-        tap((item) => {
-          this.item = item as unknown as T;
-        })
-      );
+  setFieldInSingleData(field: keyof T, value: T[keyof T]) {
+    if (this._singleData) {
+      //@ts-expect-error
+      this._singleData[field] = value;
+      this.singleData$.next(this._singleData);
+      return;
+    }
+
+    throw new Error('Donnée invalide');
+  }
+
+  setFieldInRowData(index: number, field: string, value: any) {
+    this._data[index][field as keyof T] = value;
+    this.data$.next(this._data);
+  }
+
+  update(id: string, data: {}) {
+    return this.factory.put(`${this.endPoint}/${id}`, data).pipe(
+      tap({
+        next: (response) => {
+          this.updateItemInData(id, response);
+          this.lastItemEdited$.next(response);
+
+          if (this._singleData) {
+            this.singleData = response;
+          }
+        },
+        error: (error) => this.errorResponseHandler(error),
+      })
+    );
   }
 
   delete(id: string) {
-    return this.firestore.doc(`this.collectionName/${id}`).delete();
+    return this.factory.delete(`${this.endPoint}/${id}`).pipe(
+      tap({
+        next: () => {
+          this.deleteItemInData(id);
+        },
+        error: (error) => this.errorResponseHandler(error),
+      })
+    );
   }
 
-  update(id: string, element: T) {
-    return this.firestore
-      .doc(`this.collectionName/${id}`)
-      .update(Object.assign({}, element));
+  pushItemInData(item: T | T[]) {
+    this.helper.arrayObject.append(this._data, item);
+    this.data$.next(this._data);
   }
+
+  unshiftItemInData(item: T | T[]) {
+    this.helper.arrayObject.prepend(this._data, item);
+    this.data$.next(this._data);
+  }
+
+  deleteItemInData(id: string, libelleID: string = 'id') {
+    this._data = this._data.filter((item) => {
+      return (item[libelleID as keyof T] as unknown as string) != id;
+    });
+
+    this.data$.next(this._data);
+  }
+
+  findItemInDataByID(id: string, libelleID: string = 'id') {
+    return this._data.find(
+      (item) => (item[libelleID as keyof T] as unknown as string) == id
+    );
+  }
+
+  findIndexItemInDataByID(id: string, libelleID: string = 'id') {
+    return this._data.findIndex((element) => {
+      return (element[libelleID as keyof T] as unknown as string) == id;
+    });
+  }
+
+  updateItemInData(id: string, data: any) {
+    if (this._data.length) {
+      const index = this.findIndexItemInDataByID(id);
+      this._data[index] = data;
+      this.data$.next(this._data);
+    }
+  }
+
+  errorResponseHandler(error: HttpErrorResponse) {
+    const errorMessage = error?.error?.message;
+    console.log(error);
+
+    if (error.status == 403) {
+      this.helper.navigation.navigate(['not-found']);
+    }
+    this.helper.notification.toastDanger(errorMessage, true);
+    // this.data = [];
+  }
+
+  listResponseHandler = () => {
+    return {
+      next: (data: any) => (this.data = data.data),
+      error: (error: any) => this.errorResponseHandler(error),
+    };
+  };
+
+  emitSingleData() {
+    this.singleData$.next(this._singleData);
+  }
+
+  emitData(): void {
+    this.data$.next(this._data);
+  }
+  onlyErrorResponseHandler = () => {
+    return {
+      error: (error: any) => this.errorResponseHandler(error),
+    };
+  };
 }

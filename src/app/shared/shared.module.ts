@@ -3,11 +3,9 @@ import { ModalModule } from './../helpers/modal/modal.module';
 import { FormatFileSizePipe } from './pipes/format-file-size.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { UploaderModule } from 'angular-uploader';
 
 import {
   ShortenPipe,
@@ -24,6 +22,7 @@ import {
 import { CallbackPipe } from './pipes/callback.pipe';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -54,13 +53,12 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
   ],
   imports: [
     CommonModule,
-    NgbModule,
     HttpClientModule,
+    AngularMultiSelectModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
     ModalModule,
-    UploaderModule,
     LoadingModule,
   ],
   exports: [
@@ -82,8 +80,8 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
     CountPipe,
     SelectedSortPipe,
     ModalModule,
-    UploaderModule,
     LoadingModule,
+    AngularMultiSelectModule,
   ],
 })
 export class SharedModule {}
