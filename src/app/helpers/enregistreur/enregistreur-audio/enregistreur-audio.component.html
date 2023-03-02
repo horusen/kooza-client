@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-12" *ngIf="!file">
+        <button class="btn btn-primary" (click)="enregistrer()" *ngIf="!isRecording">
+            Enregistrer
+        </button>
+
+        <div class="">
+            <div class="alert-info p-2 mb-0 rounded" *ngIf="isRecording">
+                <p>
+                    En train d'enregistrer....
+                    <img src="assets/img/recordbutton.ico" width="30" alt="">
+                    <button class="btn btn-success" (click)="stopEnregistrer()">Stop</button>
+                    <button class="btn btn-danger" (copy)="annulerEnregistrement()">Annuler</button>
+                    <!-- <img src="assets/img/cancel.png" width="30" class="ml-2" alt="" class="float-right mr-1 clickable"
+                        (>
+                    <img src="assets/img/stop.png" width="30" class="ml-2" alt="" class="float-right mr-1 clickable"> -->
+                    <span class="float-right mr-2">{{ dureeEnregistrement }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <audio controls="controls" *ngIf="urlFile">
+            <source [src]="urlFile">
+            Votre navigateur ne prend pas en charge l'élément <code>audio</code>.
+        </audio>
+    </div>
+</div>
