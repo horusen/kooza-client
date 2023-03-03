@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RetailersComponent } from './retailers/retailers.component';
 import { LeftmenuComponent } from './leftmenu/leftmenu.component';
+import { RetailerOverviewComponent } from './retailer-overview/retailer-overview.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LeftmenuComponent } from './leftmenu/leftmenu.component';
     HeaderComponent,
     FooterComponent,
     RetailersComponent,
-    LeftmenuComponent
+    LeftmenuComponent,
+    RetailerOverviewComponent
   ],
   imports: [
     BrowserModule,
