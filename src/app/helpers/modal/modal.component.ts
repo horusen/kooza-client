@@ -9,7 +9,7 @@ export class ModalComponent implements OnInit {
   @Input() configuration: {
     name: string; // id du modal
     title?: string; // Le titre affiché sur le header
-    icone?: string; // L'icone sur le header
+    icon?: string; // L'icone sur le header
     taille?: string; // taille du modal (sm, md, lg)
     minWidth?: string; // taille du modal (sm, md, lg)
     minHeight?: string; // taille du modal (sm, md, lg)

@@ -1,0 +1,35 @@
+<form [formGroup]="form"
+      (submit)="create()">
+  <div class="grid grid-cols-6 gap-6">
+
+    <!-- Customer name -->
+    <div class="col-span-12 sm:col-span-6">
+      <label for="first-name"
+             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+      <input type="text"
+             formControlName="title"
+             id="first-name"
+             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+             placeholder="An awesome message"
+             required="">
+    </div>
+
+
+    <!-- Description -->
+    <div class="col-span-6">
+      <label for="biography"
+             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+      <textarea id="biography"
+                rows="4"
+                formControlName="message"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="Just a friendly reminder that you still owe me money."></textarea>
+    </div>
+
+
+    <div class="flex col-span-6 justify-end">
+      <button type="submit"
+              class="w-full block px-5 py-3 text-base font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 sm:w-auto dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Create</button>
+    </div>
+  </div>
+</form>

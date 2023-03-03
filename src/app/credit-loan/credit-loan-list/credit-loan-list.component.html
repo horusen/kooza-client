@@ -32,7 +32,7 @@
               </th>
               <th scope="col"
                   class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                NIN
+                Due date
               </th>
               <th scope="col"
                   class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -80,9 +80,7 @@
               </td>
               <!-- NIN -->
               <td class="p-4 text-base  text-gray-900 whitespace-nowrap dark:text-white">
-                <span class="font-medium"
-                      *ngIf="credit.customer?.nin ">{{ credit.customer?.nin }}</span>
-                <i *ngIf="!credit.customer?.nin ">No element</i>
+                {{ credit.due_date | date:'dd - MMM - yy' }}
               </td>
 
               <!-- Amount of goods -->
@@ -101,8 +99,16 @@
                   Mark as paid
                 </button>
                 <button type="button"
+                        *ngIf="credit.credit_loan_status?.name == 'Unpaid'"
+                        (click)="setReminder(credit)"
                         id="updateProductButton"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                  <i class="fa-solid fa-clock mr-2"></i>
+                  Set reminder
+                </button>
+                <button type="button"
+                        id="updateProductButton"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                   <svg class="w-4 h-4 mr-2"
                        fill="currentColor"
                        viewBox="0 0 20 20"

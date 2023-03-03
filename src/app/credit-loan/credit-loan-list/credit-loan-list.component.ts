@@ -1,3 +1,4 @@
+import { ReminderService } from './../../reminder/reminder.service';
 import { CreditLoan } from './../credit-loan.model';
 import { Component } from '@angular/core';
 import { BaseListComponent } from 'src/app/shared/base-component';
@@ -9,7 +10,15 @@ import { CreditLoanService } from '../credit-loan.service';
   styleUrls: ['./credit-loan-list.component.scss'],
 })
 export class CreditLoanListComponent extends BaseListComponent<CreditLoan> {
-  constructor(public creditLoanService: CreditLoanService) {
+  constructor(
+    public creditLoanService: CreditLoanService,
+    public reminderService: ReminderService
+  ) {
     super(creditLoanService);
+  }
+
+  setReminder(element: CreditLoan) {
+    this.reminderService.creditLoan$.next(element);
+    this.helper.modal.show('set-reminder-modal');
   }
 }
