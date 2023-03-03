@@ -38,11 +38,11 @@ export class BaseContainerComponent<T>
     this.route.fragment.subscribe((fragment) => {
       if (fragment === `add-${this.element}`) {
         this.create = true;
-        this.helper.modal.toggle(`${this.element}-create-modal`);
+        this.helper.modal.show(`${this.element}-create-modal`);
       } else if (fragment === `edit-${this.element}`) {
         if (this.service.singleData) {
           this.edit = true;
-          this.helper.modal.toggle(`${this.element}-edit-modal`);
+          this.helper.modal.hide(`${this.element}-edit-modal`);
         } else {
           this.router.navigate(['./'], {
             relativeTo: this.route,
@@ -64,7 +64,7 @@ export class BaseContainerComponent<T>
   }
 
   onEdited(): void {
-    this.helper.modal.toggle(`${this.element}-edit-modal`);
+    this.helper.modal.show(`${this.element}-edit-modal`);
     this.router.navigate(['./'], {
       relativeTo: this.route,
       queryParamsHandling: 'preserve',

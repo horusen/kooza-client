@@ -20,10 +20,9 @@ export class BaseEditComponent<T>
 
   ngOnInit() {
     // super.ngOnInit();
-
-    this.subscriptions['_single'] = this.service.item$.subscribe(
-      (single) => (this.single = single)
-    );
+    // this.subscriptions['_single'] = this.service.item$.subscribe(
+    //   (single) => (this.single = single)
+    // );
   }
 
   initFormWithData(

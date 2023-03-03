@@ -1,14 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  // Home Module
   {
     path: '',
-    loadChildren: () =>
-      import('./dashboard/dashboard.module').then(
-        (module) => module.DashboardModule
-      ),
+    component: HomeComponent,
+    children: [
+      // Dashboard
+      {
+        path: '',
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then(
+            (module) => module.DashboardModule
+          ),
+      },
+      // Credit loan
+      {
+        path: 'credit-loan',
+        loadChildren: () =>
+          import('./credit-loan/credit-loan.module').then(
+            (module) => module.CreditLoanModule
+          ),
+      },
+    ],
   },
+
+  // Auth Module
   {
     path: 'auth',
     loadChildren: () =>

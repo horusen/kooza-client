@@ -1,6 +1,7 @@
 import { CreditLoanStatus } from './../credit-loan-status/credit-loan-status.model';
 import { Business } from './../business/business.model';
 import { BaseModel } from './../shared/models/BaseModel';
+import { Customer } from '../customer/customer.model';
 
 export class CreditLoan extends BaseModel {
   business_id?: string;
@@ -15,7 +16,9 @@ export class CreditLoan extends BaseModel {
 
   business?: Business;
 
-  // customer?: Customer;
+  customer?: Customer;
+
+  description?: String;
 
   credit_loan_status?: CreditLoanStatus;
 }

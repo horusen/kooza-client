@@ -15,6 +15,10 @@ interface LoginInformation {
   providedIn: 'root',
 })
 export class AuthService extends BaseService<any> {
+  get business() {
+    return this.storage.get('business') as Business;
+  }
+
   constructor(public storage: Storage) {
     super('auth');
   }

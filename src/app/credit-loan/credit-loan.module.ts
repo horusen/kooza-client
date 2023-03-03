@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CreditLoanComponent } from './credit-loan.component';
 import { CreditLoanCreateComponent } from './credit-loan-create/credit-loan-create.component';
 import { SharedModule } from '../shared/shared.module';
+import { CreditLoanListComponent } from './credit-loan-list/credit-loan-list.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [CreditLoanComponent, CreditLoanCreateComponent],
+  declarations: [CreditLoanComponent, CreditLoanCreateComponent, CreditLoanListComponent],
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })
 export class CreditLoanModule {}

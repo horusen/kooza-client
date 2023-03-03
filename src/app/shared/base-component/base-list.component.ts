@@ -25,7 +25,7 @@ export abstract class BaseListComponent<T>
 
   ngOnInit(): void {
     this.loading = true;
-    this.service.getAll().subscribe(() => {
+    this.service.get().subscribe(() => {
       this.loading = false;
     });
   }

@@ -129,8 +129,8 @@ export abstract class BaseService<T = any> {
     return this.factory.post(this.endPoint, elements).pipe(
       tap({
         next: (response) => {
-          this.lastItemCreated = response;
-          this.unshiftItemInData(response);
+          this.lastItemCreated = response.data;
+          this.unshiftItemInData(response.data);
         },
         error: (error) => {
           this.errorResponseHandler(error);
