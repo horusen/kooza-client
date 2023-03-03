@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LeftmenuComponent } from './leftmenu/leftmenu.component';
+import { RetailerOverviewComponent } from './retailer-overview/retailer-overview.component';
 import { RetailersComponent } from './retailers/retailers.component';
 import { AppInjector } from './shared/services';
 import { SharedModule } from './shared/shared.module';
@@ -19,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
     FooterComponent,
     RetailersComponent,
     LeftmenuComponent,
+    RetailerOverviewComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
