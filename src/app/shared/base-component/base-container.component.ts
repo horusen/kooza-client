@@ -50,7 +50,7 @@ export class BaseContainerComponent<T>
           });
         }
       } else {
-        this.helper.modal.hide(`${this.element}-create-modal`);
+        // this.helper.modal.hide(`${this.element}-create-modal`);
       }
     });
   }

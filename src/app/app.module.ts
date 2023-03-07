@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { LeftmenuComponent } from './leftmenu/leftmenu.component';
 import { AppInjector } from './shared/services';
 import { SharedModule } from './shared/shared.module';
-import { RetailerOverviewComponent } from './retailer-overview/retailer-overview.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +17,7 @@ import { RetailerOverviewComponent } from './retailer-overview/retailer-overview
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-
     LeftmenuComponent,
-    RetailerOverviewComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, DashboardModule],
   providers: [],

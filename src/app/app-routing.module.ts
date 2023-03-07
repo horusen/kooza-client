@@ -8,20 +8,21 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      // Dashboard
-      {
-        path: '',
-        loadChildren: () =>
-          import('./dashboard/dashboard.module').then(
-            (module) => module.DashboardModule
-          ),
-      },
       // Credit loan
       {
         path: 'credit-loan',
         loadChildren: () =>
           import('./credit-loan/credit-loan.module').then(
             (module) => module.CreditLoanModule
+          ),
+      },
+
+      // Dashboard
+      {
+        path: '',
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then(
+            (module) => module.DashboardModule
           ),
       },
     ],

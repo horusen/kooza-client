@@ -38,7 +38,7 @@ export class ReminderCreateComponent
       credit_loan_id: [this.creditLoan?.id, Validators.required],
       date: [null, Validators.required],
       time: [null, Validators.required],
-      repeat: [null, Validators.required],
+      repeat: ['No', Validators.required],
     });
   }
 }

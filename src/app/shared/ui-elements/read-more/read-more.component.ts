@@ -6,9 +6,9 @@ import { Component, Input, ElementRef, OnChanges } from '@angular/core';
     <div [innerHTML]="currentText"></div>
     <a
       *ngIf="!hideToggle"
-      class="clickable text-facebook d-inline-block font-weight-bold"
+      class="clickable text-orange text-xs d-inline-block font-weight-bold"
       (click)="toggleView()"
-      >Voir {{ isCollapsed ? 'plus' : 'moins' }}</a
+      >See more</a
     >
   `,
   styles: [

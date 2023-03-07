@@ -27,6 +27,7 @@ export abstract class BaseListComponent<T>
     this.loading = true;
     this.service.get().subscribe(() => {
       this.loading = false;
+      console.log(this.service.data);
     });
   }
 

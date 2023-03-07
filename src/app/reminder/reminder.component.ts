@@ -16,4 +16,9 @@ export class ReminderComponent extends BaseContainerComponent<Reminder> {
   ) {
     super(reminderService, route, 'reminder');
   }
+
+  addReminder() {
+    this.helper.modal.hide('set-reminder-modal');
+    this.helper.modal.show('add-reminder-modal');
+  }
 }

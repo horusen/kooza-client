@@ -15,15 +15,18 @@ export class HelperModal {
   // }
 
   show(id: string): void {
-    const element = document.getElementById(id);
-    const modal = new Modal(element);
+    let element = document.getElementById(id);
+    let modal = new Modal(element, { backdrop: 'dynamic', closable: true });
 
     modal.show();
+
+    //@ts-expect-error
+    modal = null;
   }
 
   hide(id: string): void {
-    const element = document.getElementById(id);
-    const modal = new Modal(element);
+    let element = document.getElementById(id);
+    let modal = new Modal(element);
 
     modal.hide();
   }

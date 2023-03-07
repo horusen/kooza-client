@@ -1,3 +1,4 @@
+import { Reminder } from './../reminder/reminder.model';
 import { CreditLoanStatus } from './../credit-loan-status/credit-loan-status.model';
 import { Business } from './../business/business.model';
 import { BaseModel } from './../shared/models/BaseModel';
@@ -21,4 +22,6 @@ export class CreditLoan extends BaseModel {
   description?: String;
 
   credit_loan_status?: CreditLoanStatus;
+
+  reminders?: Reminder[];
 }

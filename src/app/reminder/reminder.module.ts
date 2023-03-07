@@ -1,3 +1,4 @@
+import { Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReminderComponent } from './reminder.component';
@@ -6,7 +7,11 @@ import { SharedModule } from '../shared/shared.module';
 import { ReminderListComponent } from './reminder-list/reminder-list.component';
 
 @NgModule({
-  declarations: [ReminderComponent, ReminderCreateComponent, ReminderListComponent],
+  declarations: [
+    ReminderComponent,
+    ReminderCreateComponent,
+    ReminderListComponent,
+  ],
   imports: [CommonModule, SharedModule],
   exports: [ReminderComponent],
 })

@@ -66,8 +66,10 @@
 
               <!-- Name -->
               <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                <div class="text-base font-semibold text-gray-900 dark:text-white">{{ credit.customer?.name }}</div>
-                <div class="text-sm font-normal text-gray-500 dark:text-gray-400">Madina</div>
+                <a [routerLink]="['/', 'customer', credit.id]">
+                  <div class="text-base font-semibold text-gray-900 dark:text-white">{{ credit.customer?.name }}</div>
+                  <div class="text-sm font-normal text-gray-500 dark:text-gray-400">Madina</div>
+                </a>
               </td>
 
               <!-- Phone number -->
@@ -92,6 +94,7 @@
               <!-- Actions -->
               <td class="p-4 space-x-2 whitespace-nowrap flex justify-end">
                 <button type="button"
+                        (click)="markAsPaid(credit.id!)"
                         *ngIf="credit.credit_loan_status?.name == 'Unpaid'"
                         id="updateProductButton"
                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
@@ -102,6 +105,7 @@
                         *ngIf="credit.credit_loan_status?.name == 'Unpaid'"
                         (click)="setReminder(credit)"
                         id="updateProductButton"
+                        [ngClass]="{'bg-green': credit.reminders?.length}"
                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                   <i class="fa-solid fa-clock mr-2"></i>
                   Set reminder

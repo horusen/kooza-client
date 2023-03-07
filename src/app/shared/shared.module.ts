@@ -1,3 +1,4 @@
+import { ReadMoreComponent } from './ui-elements/read-more/read-more.component';
 import { LoadingModule } from './../helpers/loading/loading.module';
 import { ModalModule } from './../helpers/modal/modal.module';
 import { FormatFileSizePipe } from './pipes/format-file-size.pipe';
@@ -38,6 +39,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
     FichierTypeFilterPipe,
     CountPipe,
     SelectedSortPipe,
+    ReadMoreComponent,
   ],
   providers: [
     {
@@ -82,6 +84,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
     ModalModule,
     LoadingModule,
     AngularMultiSelectModule,
+    ReadMoreComponent,
   ],
 })
 export class SharedModule {}

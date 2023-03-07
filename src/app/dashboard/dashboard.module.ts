@@ -1,3 +1,4 @@
+import { RetailerOverviewComponent } from './../retailer-overview/retailer-overview.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,8 +7,8 @@ import { RetailersComponent } from './retailers/retailers.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: DashboardComponent,
+    path: 'customer/:id',
+    component: RetailerOverviewComponent,
   },
   {
     path: 'credit-loan',
@@ -16,10 +17,18 @@ const routes: Routes = [
         (module) => module.CreditLoanModule
       ),
   },
+  {
+    path: '',
+    component: DashboardComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [DashboardComponent, RetailersComponent],
+  declarations: [
+    DashboardComponent,
+    RetailersComponent,
+    RetailerOverviewComponent,
+  ],
   imports: [CommonModule, RouterModule.forChild(routes)],
 })
 export class DashboardModule {}

@@ -255,14 +255,12 @@ export class BaseCreateComponent<T>
   }
 
   create() {
-    console.log(this.form.value);
-
-    // this.loading = true;
-    // this.service.store(this.form.value).subscribe(() => {
-    //   this.loading = false;
-    //   this.form.reset();
-    //   this.helper.navigation.deleteFragmentFromUrl();
-    //   this.helper.notification.alertSuccess();
-    // });
+    this.loading = true;
+    this.service.store(this.form.value).subscribe(() => {
+      this.loading = false;
+      this.form.reset();
+      this.helper.navigation.deleteFragmentFromUrl();
+      this.helper.notification.alertSuccess();
+    });
   }
 }

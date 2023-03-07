@@ -13,7 +13,7 @@ import { AppInjector } from './app-injector.service';
   providedIn: 'root',
 })
 export abstract class BaseService<T = any> {
-  protected _data: T[] = [];
+  public _data: T[] = [];
   protected _singleData: T | undefined;
   protected _paginationInfo: PaginationInfo | undefined;
 

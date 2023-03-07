@@ -1,7 +1,7 @@
 // import { User } from 'src/app/express-courrier/users/user.model';
 
 export class BaseModel {
-  id?: number;
+  id?: string;
   inscription?: number;
   created_at?: Date;
   update_at?: Date;
