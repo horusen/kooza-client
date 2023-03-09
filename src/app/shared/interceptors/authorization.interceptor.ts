@@ -22,11 +22,8 @@ export class AuthorizationInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap({
         error: (error: HttpErrorResponse) => {
-          console.log(error);
-
           if (error.status == 403) {
             // this.router.navigate(['./']);
-            console.log('YEAH');
 
             this.helper.notification.toastDanger(
               "Vous n'êtes pas autorisé a effectuer cette action."

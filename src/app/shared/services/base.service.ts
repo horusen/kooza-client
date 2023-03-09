@@ -233,7 +233,6 @@ export abstract class BaseService<T = any> {
 
   errorResponseHandler(error: HttpErrorResponse) {
     const errorMessage = error?.error?.message;
-    console.log(error);
 
     if (error.status == 403) {
       this.helper.navigation.navigate(['not-found']);

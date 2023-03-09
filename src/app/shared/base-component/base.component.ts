@@ -23,7 +23,6 @@ export abstract class BaseComponent<T> implements OnDestroy {
   // public auth: AuthService = null;
 
   constructor(public service?: BaseService<T>) {
-    console.log(AppInjector.injector);
     this.helper = AppInjector.injector.get(Helper);
     // this.auth = AppInjector.injector.get(AuthService);
   }

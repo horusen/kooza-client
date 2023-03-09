@@ -33,9 +33,6 @@ export class SetReminderService extends BaseService<any> {
             console.log(this.creditService._data[credit]);
 
             this.creditService.emitData();
-
-            console.log(response.data);
-            console.log(this.creditService._data);
           }
         },
         error: (error) => {
