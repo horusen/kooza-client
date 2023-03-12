@@ -1,9 +1,8 @@
+import { CreditLoanService } from 'src/app/credit-loan/credit-loan.service';
 import { Reminder } from './../reminder.model';
 import { BaseListComponent } from 'src/app/shared/base-component';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { ReminderService } from '../reminder.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SetReminderService } from 'src/app/set-reminder/set-reminder.service';
 
 @Component({
   selector: 'app-reminder-list',
@@ -11,17 +10,26 @@ import { SetReminderService } from 'src/app/set-reminder/set-reminder.service';
   styleUrls: ['./reminder-list.component.scss'],
 })
 export class ReminderListComponent extends BaseListComponent<Reminder> {
-  selectedReminderId: string | undefined;
-  @Output() selected = new EventEmitter<string>();
   constructor(
     public reminderService: ReminderService,
-    public setReminserService: SetReminderService
+    public creditLoanService: CreditLoanService
   ) {
     super(reminderService);
   }
 
-  selectReminder(id: string) {
-    this.selectedReminderId = id;
-    this.setReminserService.reminderId.next(this.selectedReminderId);
+  override ngOnInit(): void {
+    this.subscriptions['creditLoan'] =
+      this.reminderService.creditLoanId$.subscribe((creditLoan) => {
+        if (creditLoan) this.getData(creditLoan!);
+      });
+  }
+
+  getData(creditLoan: string) {
+    this.loading = true;
+    this.reminderService.getByCreditLoan(creditLoan).subscribe((data) => {
+      console.log(data);
+
+      this.loading = false;
+    });
   }
 }

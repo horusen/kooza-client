@@ -25,6 +25,7 @@ module.exports = {
     "dark:bg-opacity-80",
   ],
   darkMode: "class",
+  plugins: [require("flowbite/plugin")],
   theme: {
     extend: {
       colors: {
@@ -85,6 +86,4 @@ module.exports = {
       },
     },
   },
-
-  plugins: [require("flowbite/plugin")],
 };

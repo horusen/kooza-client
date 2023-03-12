@@ -82,14 +82,24 @@
               </td>
               <!-- NIN -->
               <td class="p-4 text-base  text-gray-900 whitespace-nowrap dark:text-white">
-                {{ credit.due_date | date:'dd - MMM - yy' }}
+                {{ credit.due_date | date:'MMMM dd, yyyy' }}
               </td>
 
               <!-- Amount of goods -->
-              <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ credit.amount }}</td>
+              <td class="p-4 text-md text-center font-semibold text-gray-900 whitespace-nowrap dark:text-white">
+                ${{ credit.amount }}
+              </td>
 
               <!-- Status -->
-              <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ credit.credit_loan_status?.name }}</td>
+
+              <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500"
+                      *ngIf="credit.credit_loan_status?.name == 'Paid'">Paid</span>
+
+                <span *ngIf="credit.credit_loan_status?.name == 'Unpaid'"
+                      class="bg-orange-100 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md border border-orange-100 dark:bg-gray-700 dark:border-orange-300 dark:text-orange-300">
+                  Unpaid</span>
+              </td>
 
               <!-- Actions -->
               <td class="p-4 space-x-2 whitespace-nowrap flex justify-end">
@@ -108,7 +118,7 @@
                         [ngClass]="{'bg-green': credit.reminders?.length}"
                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                   <i class="fa-solid fa-clock mr-2"></i>
-                  Set reminder
+                  Reminders
                 </button>
                 <button type="button"
                         id="updateProductButton"

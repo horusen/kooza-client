@@ -1,4 +1,4 @@
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BaseContainerComponent } from './../shared/base-component/base-container.component';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CreditLoan } from './credit-loan.model';

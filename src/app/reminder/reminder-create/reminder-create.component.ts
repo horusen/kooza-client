@@ -79,7 +79,6 @@ export class ReminderCreateComponent
       this.reminderService.paymentMethods$.next([]);
       this.helper.navigation.deleteFragmentFromUrl();
       this.helper.notification.alertSuccess();
-      console.log(this.form.value);
     });
   }
 }

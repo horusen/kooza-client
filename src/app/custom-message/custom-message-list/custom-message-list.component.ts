@@ -2,7 +2,6 @@ import { CustomMessageService } from './../custom-message.service';
 import { BaseListComponent } from 'src/app/shared/base-component';
 import { CustomMessage } from './../custom-message.model';
 import { Component, Output, EventEmitter } from '@angular/core';
-import { SetReminderService } from 'src/app/set-reminder/set-reminder.service';
 import { ReminderService } from 'src/app/reminder/reminder.service';
 
 @Component({
