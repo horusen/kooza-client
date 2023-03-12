@@ -1,3 +1,5 @@
+import { CustomMessageModule } from './../custom-message/custom-message.module';
+import { PaymentMethodModule } from './../payment-method/payment-method.module';
 import { Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +14,12 @@ import { ReminderListComponent } from './reminder-list/reminder-list.component';
     ReminderCreateComponent,
     ReminderListComponent,
   ],
-  imports: [CommonModule, SharedModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    CustomMessageModule,
+    PaymentMethodModule,
+  ],
   exports: [ReminderComponent],
 })
 export class ReminderModule {}

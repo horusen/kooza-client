@@ -8,7 +8,9 @@ import { Reminder } from './reminder.model';
   providedIn: 'root',
 })
 export class ReminderService extends BaseService<Reminder> {
-  creditLoan$ = new ReplaySubject<CreditLoan>(1);
+  creditLoanId$ = new ReplaySubject<string | null>(1);
+  customMessageId$ = new ReplaySubject<string | null>(1);
+  paymentMethods$ = new ReplaySubject<string[]>(1);
 
   constructor() {
     super('reminder');

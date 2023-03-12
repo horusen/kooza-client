@@ -1,7 +1,7 @@
 <div class="grid gap-4 grid-cols-2"
      *ngIf="!loading">
   <div *ngFor="let reminder of reminderService.data"
-       [ngClass]="{'bg-orange-100 outline-1': reminder.id == selectedReminderId}"
+       [ngClass]="{'bg-orange-100 scale-105 outline-1': reminder.id == selectedReminderId}"
        (click)="selectReminder(reminder.id!)"
        class="max-w-sm p-4 flex clickable justify-between items-baseline bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 

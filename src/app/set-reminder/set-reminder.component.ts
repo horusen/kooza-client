@@ -25,11 +25,11 @@ export class SetReminderComponent
   ngOnInit() {
     this.initForm();
 
-    this.subscriptions['reminder'] = this.reminderService.creditLoan$.subscribe(
-      (credit) => {
-        this.formValuePatcher('creditId', credit.id);
-      }
-    );
+    // this.subscriptions['reminder'] = this.reminderService.creditLoanId$.subscribe(
+    //   (credit) => {
+    //     this.formValuePatcher('creditId', credit.id);
+    //   }
+    // );
 
     this.subscriptions['reminderId'] =
       this.setReminderService.reminderId.subscribe((reminderId) => {
@@ -58,10 +58,14 @@ export class SetReminderComponent
   }
 
   override create() {
+    if (!this.form.valid) {
+      this.helper.notification.alertDanger('Invalid form');
+      return;
+    }
     this.loading = true;
     this.setReminderService.add(this.form.value).subscribe(() => {
       this.loading = false;
-      this.form.reset();
+      // this.form.reset();
       this.helper.notification.alertSuccess();
     });
   }

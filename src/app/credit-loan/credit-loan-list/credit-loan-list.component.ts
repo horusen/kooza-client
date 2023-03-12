@@ -18,7 +18,7 @@ export class CreditLoanListComponent extends BaseListComponent<CreditLoan> {
   }
 
   setReminder(element: CreditLoan) {
-    this.reminderService.creditLoan$.next(element);
+    this.reminderService.creditLoanId$.next(element.id!);
     this.helper.modal.show('set-reminder-modal');
   }
 
