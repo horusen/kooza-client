@@ -16,9 +16,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    CreditLoanComponent,
     CreditLoanCreateComponent,
     CreditLoanListComponent,
+    CreditLoanComponent,
   ],
   imports: [
     CommonModule,
@@ -26,5 +26,6 @@ const routes: Routes = [
     SharedModule,
     ReminderModule,
   ],
+  exports: [CreditLoanComponent],
 })
 export class CreditLoanModule {}

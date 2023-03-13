@@ -1,3 +1,5 @@
+import { CreditLoanModule } from './../credit-loan/credit-loan.module';
+import { SharedModule } from './../shared/shared.module';
 import { RetailerOverviewComponent } from './../retailer-overview/retailer-overview.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -29,6 +31,6 @@ const routes: Routes = [
     RetailersComponent,
     RetailerOverviewComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })
 export class DashboardModule {}

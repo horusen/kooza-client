@@ -1,3 +1,4 @@
+import { CreditLoanComponent } from './../credit-loan/credit-loan.component';
 import { ReadMoreComponent } from './ui-elements/read-more/read-more.component';
 import { LoadingModule } from './../helpers/loading/loading.module';
 import { ModalModule } from './../helpers/modal/modal.module';

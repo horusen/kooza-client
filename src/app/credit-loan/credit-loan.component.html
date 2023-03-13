@@ -31,12 +31,12 @@
                           clip-rule="evenodd"></path>
                   </svg>
                   <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500"
-                        aria-current="page">Credit Loans</span>
+                        aria-current="page">Credit</span>
                 </div>
               </li>
             </ol>
           </nav>
-          <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">All loans</h1>
+          <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">All credits</h1>
         </div>
         <div class="items-center justify-between block sm:flex md:divide-x md:divide-gray-100 dark:divide-gray-700">
           <div class="flex items-center mb-4 sm:mb-0">
@@ -105,7 +105,7 @@
                   type="button"
                   [routerLink]="['./']"
                   [fragment]="'add-credit-loan'">
-            Add new credit loan
+            Add new credit
           </button>
         </div>
       </div>
@@ -149,7 +149,7 @@
   </div>
 </main>
 
-<app-modal [configuration]="{ name: 'credit-loan-create-modal', title: 'Add new credit loan', icon: 'money-check'}"
+<app-modal [configuration]="{ name: 'credit-loan-create-modal', title: 'Add new credit', icon: 'money-check'}"
            (closed)="helper.navigation.deleteFragmentFromUrl()">
   <app-credit-loan-create></app-credit-loan-create>
 </app-modal>
