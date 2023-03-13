@@ -1,0 +1,12 @@
+<div class="grid grid-cols-2 gap-4">
+  <a *ngFor="let message of messageService.data"
+     [ngClass]="{'bg-orange-100 outline-1 scale-105': message.id == selected}"
+     (click)="select(message.id!)"
+     class="block max-w-sm p-6 clickable bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <h5 class="mb-2  font-bold tracking-tight text-gray-900 dark:text-white">{{ message.title }}</h5>
+    <read-more class="font-normal text-gray-700 dark:text-gray-400"
+               [text]="message.message!"
+               [maxLength]="250"></read-more>
+  </a>
+
+</div>

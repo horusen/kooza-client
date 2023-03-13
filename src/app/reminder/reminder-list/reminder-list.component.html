@@ -1,0 +1,33 @@
+<div class="grid gap-4 grid-cols-2"
+     *ngIf="!loading && reminderService.data.length">
+  <div *ngFor="let reminder of reminderService.data"
+       class="max-w-sm p-4  clickable  items-baseline bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+    <div class="flex justify-between">
+      <a class="mb-2 font-semibold tracking-tight text-yellow-800 dark:text-white"> <i class="fa-solid fa-calendar mr-2"></i> {{ reminder.date | date:
+        'dd MMM yyyy' }}
+      </a>
+      <div class="text-sm font-normal text-gray-500  dark:text-gray-400"><i class="fa-solid fa-clock mr-2"></i> {{ reminder.date | date: 'HH:mm' }}
+      </div>
+    </div>
+
+
+
+    <read-more [text]="reminder.custom_message?.message!"
+               [maxLength]="100"></read-more>
+
+    <div *ngIf="reminder.payment_methods?.length">
+      <span class="bg-orange-100 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-orange-300"
+            *ngFor="let paymentMethod of reminder.payment_methods"><i class="fa-solid fa-hand-holding-dollar"></i> {{paymentMethod.name
+        }}</span>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+<app-missing-data *ngIf="!loading && !reminderService.data.length"></app-missing-data>
+
+<app-loading *ngIf="loading"></app-loading>

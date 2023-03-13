@@ -1,0 +1,122 @@
+<div class="grid grid-cols-1 my-4 h-full xl:grid-cols-2 xl:gap-4">
+  <!-- Activity Card -->
+  <div class="p-4 mb-4 h-full w-full   bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 xl:mb-0">
+
+
+
+
+
+
+    <div
+         class="items-center w-full  justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+      <div class="w-full">
+        <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Next Payment </h3>
+        <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white"> ₵ 2,340</span>
+        <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+          <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+            <!-- <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path clip-rule="evenodd" fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"></path>
+        </svg> -->
+            Due Date:
+          </span>
+          21.03.2023
+        </p>
+      </div>
+      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex justify-end px-4 pt-4">
+          <button id="dropdownButton"
+                  data-dropdown-toggle="dropdown"
+                  class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+                  type="button">
+            <span class="sr-only">Open dropdown</span>
+            <svg class="w-6 h-6"
+                 aria-hidden="true"
+                 fill="currentColor"
+                 viewBox="0 0 20 20"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
+            </svg>
+          </button>
+          <!-- Dropdown menu -->
+          <div id="dropdown"
+               class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            <ul class="py-2"
+                aria-labelledby="dropdownButton">
+              <li>
+                <a href="#"
+                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+              </li>
+              <li>
+                <a href="#"
+                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export
+                  Data</a>
+              </li>
+              <li>
+                <a href="#"
+                   class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-col items-center pb-10">
+          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Rainer</h5>
+          <span class="text-sm text-gray-500 dark:text-gray-400">Madina.</span>
+          <div class="flex mt-4 space-x-3 md:mt-6">
+            <a href="#"
+               class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Edit</a>
+            <a href="#"
+               class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <!--Carousel -->
+  <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 xl:mb-0">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Latest Activity</h3>
+
+    </div>
+    <ol class="relative border-l border-gray-200 dark:border-gray-700">
+      <li class="mb-10 ml-4">
+        <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-800 dark:bg-gray-700"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">12 April 2022 - 27 April 2022</time>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Credit Approval</h3>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">2000 GHC <span
+                class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Paid on
+            time</span>
+        </p>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Soap, Oil
+        </p>
+
+      </li>
+      <li class="mb-10 ml-4">
+        <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-800 dark:bg-gray-700"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">6 May 2022 - 6 June 2022</time>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Credit Approval</h3>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">800 GHC <span
+                class="bg-orange-100 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">Delayed</span>
+        </p>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Water, Juice, Oignon
+        </p>
+
+      </li>
+      <li class="mb-10 ml-4">
+        <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-800 dark:bg-gray-700"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">12 December 2022 - 27 June 2022</time>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Credit Approval</h3>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">2000 GHC <span
+                class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Paid on
+            time</span>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Milk, Sugar, Oignon
+        </p>
+
+      </li>
+
+      <!--Texting section-->
+    </ol>
+  </div>
+</div>
