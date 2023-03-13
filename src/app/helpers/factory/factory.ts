@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 import { Storage } from '../storage/storage';
 // import { TokenStorage } from "./token-storage.service";
 
@@ -8,7 +9,7 @@ import { Storage } from '../storage/storage';
   providedIn: 'root',
 })
 export class Factory {
-  public baseUrl = 'http://localhost:3000';
+  public baseUrl;
   private _headers = {
     Authorization: `Bearer ${this.storage.getAccessToken()}`,
   };
@@ -16,7 +17,9 @@ export class Factory {
   constructor(
     public storage: Storage,
     public http: HttpClient // public _tokenStorage: TokenStorage
-  ) {}
+  ) {
+    this.baseUrl = environment.baseUrl;
+  }
 
   public get(endPoint: string, options?: object): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${endPoint}`, {
