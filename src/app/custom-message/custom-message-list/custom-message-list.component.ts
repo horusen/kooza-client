@@ -2,7 +2,7 @@ import { CustomMessageService } from './../custom-message.service';
 import { BaseListComponent } from 'src/app/shared/base-component';
 import { CustomMessage } from './../custom-message.model';
 import { Component, Output, EventEmitter } from '@angular/core';
-import { SetReminderService } from 'src/app/set-reminder/set-reminder.service';
+import { ReminderService } from 'src/app/reminder/reminder.service';
 
 @Component({
   selector: 'app-custom-message-list',
@@ -10,17 +10,25 @@ import { SetReminderService } from 'src/app/set-reminder/set-reminder.service';
   styleUrls: ['./custom-message-list.component.scss'],
 })
 export class CustomMessageListComponent extends BaseListComponent<CustomMessage> {
-  selected: string | undefined;
+  selected: string | undefined | null;
   @Output() outputSelected = new EventEmitter<string>();
   constructor(
     public messageService: CustomMessageService,
-    public setReminserService: SetReminderService
+    public reminderService: ReminderService
   ) {
     super(messageService);
   }
 
+  override ngOnInit(): void {
+    super.ngOnInit();
+
+    this.subscriptions['reminderCustomMessageId'] =
+      this.reminderService.customMessageId$.subscribe((customMessageId) => {
+        this.selected = customMessageId;
+      });
+  }
+
   select(id: string) {
-    this.selected = id;
-    this.setReminserService.messageId.next(this.selected);
+    this.reminderService.customMessageId$.next(id);
   }
 }

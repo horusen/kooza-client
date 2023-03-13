@@ -1,7 +1,7 @@
 <div class="grid grid-cols-2 gap-4">
   <div class="group border border-gray-200 clickable  bg-white p-4 transition-all duration-300 hover:rotate-1 lg:p-8"
        *ngFor="let paymentMethod of paymentMethodService.data"
-       [ngClass]="{'bg-orange-100 outline-1 scale-105': paymentMethod.id == selected}"
+       [ngClass]="{'bg-orange-100 outline-1 scale-105': selected.includes(paymentMethod.id!)}"
        (click)="select(paymentMethod.id!)">
     <div class="mb-3  text-right">
       <!-- <button class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">

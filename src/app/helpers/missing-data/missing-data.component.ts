@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MissingDataComponent implements OnInit {
   @Input() message!: string;
-  @Input() subMessage: string;
+  @Input() subMessage?: string;
   constructor() {}
 
   ngOnInit() {}

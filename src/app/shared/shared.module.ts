@@ -24,6 +24,7 @@ import { CallbackPipe } from './pipes/callback.pipe';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { MissingDataModule } from '../helpers/missing-data/missing-data.module';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
     LoadingModule,
     AngularMultiSelectModule,
     ReadMoreComponent,
+    MissingDataModule,
   ],
 })
 export class SharedModule {}

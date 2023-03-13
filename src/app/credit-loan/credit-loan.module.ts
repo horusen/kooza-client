@@ -5,7 +5,7 @@ import { CreditLoanComponent } from './credit-loan.component';
 import { CreditLoanCreateComponent } from './credit-loan-create/credit-loan-create.component';
 import { SharedModule } from '../shared/shared.module';
 import { CreditLoanListComponent } from './credit-loan-list/credit-loan-list.component';
-import { SetReminderModule } from '../set-reminder/set-reminder.module';
+import { ReminderModule } from '../reminder/reminder.module';
 
 const routes: Routes = [
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    SetReminderModule,
+    ReminderModule,
   ],
 })
 export class CreditLoanModule {}

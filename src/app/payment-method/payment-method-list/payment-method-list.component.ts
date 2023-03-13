@@ -1,8 +1,8 @@
-import { SetReminderService } from './../../set-reminder/set-reminder.service';
 import { PaymentMethodService } from './../payment-method.service';
 import { PaymentMethod } from './../payment-method.model';
 import { BaseListComponent } from 'src/app/shared/base-component';
 import { Component, Output, EventEmitter } from '@angular/core';
+import { ReminderService } from 'src/app/reminder/reminder.service';
 
 @Component({
   selector: 'app-payment-method-list',
@@ -10,17 +10,26 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./payment-method-list.component.scss'],
 })
 export class PaymentMethodListComponent extends BaseListComponent<PaymentMethod> {
-  selected: string | undefined;
+  selected: string[] = [];
   @Output() outputSelected = new EventEmitter<string>();
   constructor(
     public paymentMethodService: PaymentMethodService,
-    public setReminserService: SetReminderService
+    public reminderService: ReminderService
   ) {
     super(paymentMethodService);
   }
 
+  override ngOnInit(): void {
+    super.ngOnInit();
+
+    this.subscriptions['reminderpaymentMethods'] =
+      this.reminderService.paymentMethods$.subscribe((paymentMethods) => {
+        this.selected = paymentMethods;
+      });
+  }
+
   select(id: string) {
-    this.selected = id;
-    this.setReminserService.paymentMethodId.next(this.selected);
+    this.selected.includes(id) ||
+      this.reminderService.paymentMethods$.next([...this.selected, id]);
   }
 }

@@ -18,15 +18,15 @@ export class CreditLoanListComponent extends BaseListComponent<CreditLoan> {
   }
 
   setReminder(element: CreditLoan) {
-    this.reminderService.creditLoan$.next(element);
+    this.reminderService.creditLoanId$.next(element.id!);
     this.helper.modal.show('set-reminder-modal');
   }
 
   markAsPaid(elementId: string) {
-    const index = this.creditLoanService.findIndexItemInDataByID(elementId);
-    if (index) {
-      this.creditLoanService._data[index].credit_loan_status?.name == 'Paid';
-      this.creditLoanService.emitData();
-    }
+    this.loading = true;
+    this.creditLoanService.markAsPaid(elementId).subscribe(() => {
+      this.helper.notification.alertSuccess();
+      this.loading = false;
+    });
   }
 }
