@@ -23,12 +23,10 @@ export class CreditLoanListComponent extends BaseListComponent<CreditLoan> {
   }
 
   markAsPaid(elementId: string) {
-    const index = this.creditLoanService.findIndexItemInDataByID(elementId);
-    console.log(index);
-
-    if (index) {
-      this.creditLoanService._data[index].credit_loan_status?.name == 'Paid';
-      this.creditLoanService.emitData();
-    }
+    this.loading = true;
+    this.creditLoanService.markAsPaid(elementId).subscribe(() => {
+      this.helper.notification.alertSuccess();
+      this.loading = false;
+    });
   }
 }
