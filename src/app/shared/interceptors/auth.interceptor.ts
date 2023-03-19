@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap({
         error: (error: HttpErrorResponse) => {
-          if (error.status == 401) this.router.navigate(['authentification']);
+          if (error.status == 401) this.router.navigate(['auth/login']);
         },
       })
     );

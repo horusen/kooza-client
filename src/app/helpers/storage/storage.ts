@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class Storage {
   public getAccessToken(): any {
-    return JSON.parse(localStorage.getItem('access_token')!);
+    return JSON.parse(localStorage.getItem('accessToken')!);
   }
 
   get<T extends any>(key: string): T | null {
