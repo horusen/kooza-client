@@ -5,11 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class Storage {
   public getAccessToken(): any {
-    return JSON.parse(localStorage.getItem('accessToken')!);
+    return localStorage.getItem('accessToken') &&
+      localStorage.getItem('accessToken') != 'undefined'
+      ? JSON.parse(localStorage.getItem('accessToken')!)
+      : null;
   }
 
   get<T extends any>(key: string): T | null {
-    return JSON.parse(localStorage.getItem(key)!) as T;
+    return localStorage.getItem(key) && localStorage.getItem(key) != 'undefined'
+      ? (JSON.parse(localStorage.getItem(key)!) as T)
+      : null;
   }
 
   set<T extends any>(key: string, element: T): void {
@@ -21,7 +26,10 @@ export class Storage {
   }
 
   public getUser(): any {
-    return JSON.parse(localStorage.getItem('user')!);
+    return localStorage.getItem('user') &&
+      localStorage.getItem('user') != 'undefined'
+      ? JSON.parse(localStorage.getItem('user')!)
+      : null;
   }
 
   public setUserField(field: string, value: any) {
@@ -29,10 +37,6 @@ export class Storage {
       'user',
       JSON.stringify({ ...this.getUser(), [field]: value })
     );
-  }
-
-  getStructures() {
-    return JSON.parse(localStorage.getItem('structures')!);
   }
 
   public setUser(user: any): void {

@@ -58,6 +58,7 @@ export class SignupComponent
         this.initForm();
         this.created.emit();
         this.helper.notification.toastSuccess();
+        this.router.navigate(['./']);
       });
   }
 }

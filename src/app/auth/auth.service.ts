@@ -29,6 +29,7 @@ export class AuthService extends BaseService<any> {
         next: (response) => {
           this.storeLoginInformation(response.data);
         },
+        error: (error) => this.errorResponseHandler(error),
       })
     );
   }
@@ -40,6 +41,7 @@ export class AuthService extends BaseService<any> {
         next: ({ data }: any) => {
           this.storeLoginInformation(data);
         },
+        error: (error) => this.errorResponseHandler(error),
       }),
       map((response) => response.business)
     );
