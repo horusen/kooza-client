@@ -1,71 +1,99 @@
 <form [formGroup]="form"
       (submit)="create()">
   <div class="grid grid-cols-6 gap-6">
-    <ng-container formGroupName="customer">
-      <!-- Customer name -->
-      <div class="col-span-12 sm:col-span-6">
-        <label for="first-name"
-               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer name</label>
-        <input type="text"
-               formControlName="name"
-               id="first-name"
-               class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-               placeholder="Bonnie"
-               required="">
-      </div>
+    <!-- Customer -->
+    <div class="col-span-12">
+      <label for="
+         name"
+             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer</label>
+      <angular2-multiselect id="structures"
+                            [data]="customers"
+                            [settings]="helper.dropdownSettings.single"
+                            formControlName="customer"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+      </angular2-multiselect>
+    </div>
 
-      <!-- Customer phone number -->
-      <div class="col-span-6 sm:col-span-3">
-        <label for="first-name"
-               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer phone number</label>
-        <input type="text"
-               formControlName="phone_number"
-               id="first-name"
-               class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-               placeholder="0201346890"
-               required="">
-      </div>
+    <ng-container formArrayName="items">
+      <ng-container *ngFor="let itemForm of items.controls; let i = index">
+        <div class="col-span-12  flex flex-row"
+             [formGroup]="itemForm">
+          <!-- Products -->
+          <div class="basis-1/2">
+            <label for="name"
+                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product</label>
+            <angular2-multiselect id="structures"
+                                  [data]="products"
+                                  [settings]="helper.dropdownSettings.single"
+                                  formControlName="product"
+                                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+            </angular2-multiselect>
+          </div>
 
-      <!-- Customer nin -->
-      <div class="col-span-6 sm:col-span-3">
-        <label for="last-name"
-               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer NIN</label>
-        <input type="text"
-               formControlName="nin"
-               class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-               placeholder="GH-029920"
-               required="">
+          <!-- quantity -->
+          <div class="basis-1/4 ml-3">
+            <label for="email"
+                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+            <input type="number"
+                   formControlName="quantity"
+                   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                   placeholder="1"
+                   required="">
+          </div>
+
+          <!-- Price -->
+          <div class="basis-1/4 ml-3">
+            <label for="email"
+                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+            <input type="number"
+                   formControlName="total_price"
+                   class="cursor-not-allowed shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                   placeholder="0"
+                   required="">
+          </div>
+        </div>
+
+
+      </ng-container>
+
+      <div class="col-span-12 flex justify-end">
+        <button class="w-full block  px-3 py-2 text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 sm:w-auto dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                (click)="addItem()"
+                type="button">Add item</button>
       </div>
     </ng-container>
 
+    <div class="col-span-12 flex">
+      <!-- Due date -->
+      <div class="basis-1/2">
+        <label for="position"
+               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due date</label>
+        <input type="date"
+               formControlName="due_date"
+               id="position"
+               class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+               placeholder=""
+               required="">
+      </div>
 
-    <!-- Amount -->
-    <div class="col-span-6 sm:col-span-3">
-      <label for="email"
-             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount of goods</label>
-      <input type="number"
-             formControlName="amount"
-             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-             placeholder="600"
-             required="">
+      <!-- Amount -->
+      <div class="basis-1/2 ml-2">
+        <label for="email"
+               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount of goods</label>
+        <input type="number"
+               formControlName="amount"
+               class="shadow-sm bg-gray-50 border cursor-not-allowed border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+               placeholder="0"
+               required="">
+      </div>
+
     </div>
 
-    <!-- Due date -->
-    <div class="col-span-6 sm:col-span-3">
-      <label for="position"
-             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due date</label>
-      <input type="date"
-             formControlName="due_date"
-             id="position"
-             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-             placeholder=""
-             required="">
-    </div>
 
     <!-- Description -->
-    <div class="col-span-6">
+    <div class="col-span-12">
       <label for="biography"
-             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Note</label>
       <textarea id="biography"
                 rows="4"
                 formControlName="description"
@@ -85,7 +113,7 @@
       </label>
     </div> -->
 
-    <div class="flex col-span-6 justify-end">
+    <div class="flex col-span-12 justify-end">
       <button type="submit"
               class="w-full block px-5 py-3 text-base font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 sm:w-auto dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Create</button>
     </div>
