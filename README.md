@@ -1,27 +1,69 @@
-# Client
+<h1 align="center">Kooza</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+<p align="center">
+  <strong>Credit Management Platform for SMEs</strong>
+</p>
 
-## Development server
+<p align="center">
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
+  </a>
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p align="center">
+  Kooza is a powerful platform that enables SMEs to effortlessly record, track, and manage the credit they extend to clients. The platform empowers businesses to reduce default rates, eliminate disputes, and gain valuable insights for informed decision-making.
+</p>
 
-## Code scaffolding
+## :rocket: Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Frontend**: Angular 2, Flowbite, Tailwind, SCSS
+- **Backend**: NestJS
+- **Database**: MySQL, TypeORM, _<a href="https://dbdiagram.io/d/6374aa94c9abfc6111730d81">See the database modeling here</a>_
+- **Email**: Nodemailer
+- **Caching**: Redis
+- **Cloud Storage**: Amazon S3
 
-## Build
+## :sparkles: Value Propositions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. **Reduced Default Rate**:
+   - Enable strategic payment plans.
+   - Increase touchpoints with payment reminders.
+   - Enforce commitment through pre-approval for garnishing.
 
-## Running unit tests
+2. **Dispute Elimination**:
+   - Provide proof of transactions to prevent disputes.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. **Business Insights**:
+   - Enable data-driven decisions through actionable insights.
 
-## Running end-to-end tests
+## :zap: Features
+ _<a href="https://drive.google.com/file/d/1Z4senX0bQu2xFV5u0e2CtZYefmS1q5_E/view?usp=sharing">:movie_camera: See how it works here</a>_
+- **Credit Recording**: Effortlessly record and manage credit extended to clients.
+- **Payment Plans**: Strategically design and implement payment plans.
+- **Payment Reminders**: Boost engagement with automated payment reminders.
+- **Garnishing Commitment**: Ensure commitment through pre-approval for garnishing.
+- **Transaction Proofs**: Prevent disputes by providing irrefutable transaction proofs.
+- **Data Analytics**: Gain deep business insights through advanced data analysis.
+- **Secure Authentication**: Safeguard user data with JWT authentication.
+- **Real-time Updates**: Utilize Redis for seamless real-time data updates.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## :bulb: Getting Started
 
-## Further help
+1. Clone this repository.
+1. Clone the backend and follow the instructions.
+2. Install dependencies with `npm install`.
+3. Run : `ng serve`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## :octocat: Contributing
+
+Contributions are greatly appreciated! Feel free to open issues and pull requests.
+
+## :scroll: License
+
+This project is licensed under the MIT License.
+
+## :lock: Security
+
+- Authentication: Ensure secure user authentication with JWT.
+- Authorization: Implement access control using NEST JS guards.
+- Security Scans: Regular AWS CodeWhisperer scans ensure code integrity.
